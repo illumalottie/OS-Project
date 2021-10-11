@@ -27,6 +27,6 @@ struct Queue {
 // Pre: file stream
 // Post: True if the file is open
 //       False if the file is closed
-bool read_File (ifstream& file);
+bool read_File (ifstream& input);
 
 #endif
