@@ -16,17 +16,17 @@ using namespace std;
 
 
 struct Queue {
-  int id, priority;
+  int p_id, priority;
   float arrival_time;
   float total_CPU_Burst;
-};
+} queue;
   
 
 // Coder: J Yong
 // Purpose: reads in a line of input from file stream
 // Pre: file stream
-// Post: True if the file is open
+// Post: True if the file is open, and reads in all input from file into a struct
 //       False if the file is closed
-bool read_File (ifstream& input);
+bool read_File (struct Queue q);
 
 #endif
