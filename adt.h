@@ -19,14 +19,14 @@ struct Queue {
   int p_id, priority;
   float arrival_time;
   float total_CPU_Burst;
-} queue;
+}; //queue; << the compiler was angry because I think it kept getting redefined per file it was included in, ur welcome to mess with it - lottie
   
 
-// Coder: J Yong
+// Coder: J Yong + Lottie Maynard
 // Purpose: reads in a line of input from file stream
 // Pre: file stream
 // Post: True if the file is open, and reads in all input from file into a struct
 //       False if the file is closed
-bool read_File (struct Queue q);
+bool read_File (struct Queue q[]);
 
 #endif
