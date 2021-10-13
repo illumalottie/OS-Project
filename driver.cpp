@@ -26,9 +26,16 @@ using namespace std;
 int main(int argc, char **argv) {
   Queue q[100]; //maybe do the lexical definition he mentioned? thoughts? - lottie
   string com[100];
+  char f;
   
   //THIS IS ALL TESTING 
   while (--argc >= 0) { //IT WORKS 
+    //if ((*++argv)[0] == '-') {
+    //  while (f = *++argv[0]) {
+    // 
+    //else { //not flag argv's
+    //  *++argv[0];
+
     com[argc] = argv[argc];
     cout << endl << com[argc];
     if (com[argc] == "yum") {
