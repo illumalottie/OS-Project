@@ -9,11 +9,11 @@ using namespace std;
 
 //id arr burst priority
 bool read_File (Queue q[]) {
-int i = 0;
-ifstream getInput;
-getInput.open("input.txt"); 
+	int i = 0;
+	ifstream getInput;
+	getInput.open("input.txt"); 
 	if (!getInput) {
-	cout << "IT FAILED";
+		cout << "IT FAILED";
 		return false;
   	}
 	while (getInput) { //fig how to look for unfinished lines?
@@ -24,6 +24,6 @@ getInput.open("input.txt");
 		getInput >> q[i].priority; 
 		i++;
 	}
-getInput.close();
-return true;
+	getInput.close();
+	return true;
 }
