@@ -23,10 +23,10 @@ struct Queue {
   
 
 // Coder: J Yong + Lottie Maynard
-// Purpose: reads in a line of input from file stream
-// Pre: file stream
-// Post: True if the file is open, and reads in all input from file into a struct
-//       False if the file is closed
-bool read_File (Queue q[], string fileName);
+// Purpose: reads in all input from file stream into a struct
+// Pre: Queue struct to read file input in
+//      fileName to open file
+// Post: all input form file has been entered into a queue struct
+void read_File (Queue q[], string fileName);
 
 #endif
