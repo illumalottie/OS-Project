@@ -24,7 +24,7 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-  Queue q[100]; //maybe do the lexical definition he mentioned? thoughts? - lottie
+  queue<Queue> q; //maybe do the lexical definition he mentioned? thoughts? - lottie
   string com[100];
   char f;
   int i = 0;
@@ -51,9 +51,10 @@ int main(int argc, char **argv) {
   //i can pass in an Queue array and it brings back all the info from the file
   //below the couts are just tests to make sure it returns the right numbers - lottie
 
-
-
-  cout << q[0].p_id << endl;
-  cout << q[1].p_id << endl;
+  Queue temp = q.front();
+  cout << endl << "\nDEBUG"
+       << endl << temp.p_id 
+       << " " << temp.arrival_time << endl;
+  
   return 0;
 }
