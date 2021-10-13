@@ -7,21 +7,25 @@
 
 using namespace std;
 
-int read_File (Queue q[], string fileName) {
+int read_File (queue<Queue>& q, string fileName) {
 	int processCnt = 0;
+	Queue newProcess;
 	ifstream getInput;
 	getInput.open(fileName); 
 	if (!getInput.is_open()) {
 		cout << "Invalid file entered: defaulting to sched.in";
 		getInput.open("sched.in");
   	}
-	while (!getInput.eof()) {
-		getInput >> q[processCnt].p_id;
-		getInput >> q[processCnt].arrival_time;
-		getInput >> q[processCnt].total_CPU_burst;
-		getInput >> q[processCnt].priority; 
+	getInput >> newProcess.p_id;
+	do {
+		getInput >> newProcess.arrival_time;
+		getInput >> newProcess.total_CPU_burst;
+		getInput >> newProcess.priority;
+		cout << endl << " BAM " << newProcess.p_id << " " << newProcess.arrival_time << endl;
+		q.push(newProcess);
 		processCnt++;
-	}
+		getInput >> newProcess.p_id; //checks if there is a next line
+	} while (!getInput.eof());
 	getInput.close();
 	return processCnt;
 }
