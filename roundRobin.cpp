@@ -6,6 +6,7 @@
 // roundRobin - runs the roundRobin schedule
 int roundRobin(Queue colleciton, int quantum, int numberOfProcesses){
 	
+	// wait be the time it running
 	int wait = 0;
 	int currentProcess = 0;
 	int averageWaitTime = 0;
@@ -20,13 +21,13 @@ int roundRobin(Queue colleciton, int quantum, int numberOfProcesses){
 			// runs for the length of a quantum and updates a processes burst tmie left and the total wait time
 			for(int i=0; i < quantum; i++){
 				if (cursor -> total_CPU_Burst != 0){
-					--collection[currentProcess] -> total_CPU_Burst;
+					--collection[currentProcess].total_CPU_Burst;
 					++wait;
 				}
 			}
 			//calculates wait time for the process after its quatum 
-			colleciton[currentProcess]-> wait_Time = colleciton[currentProcess] -> wait_Time + (wait - colleciton[currentProcess] -> startTime) - colleciton[currentProcess] -> timeStoped;
-			colleciton -> timeStoped = wait;
+			colleciton[currentProcess].wait_Time = colleciton[currentProcess].wait_Time + (wait - colleciton[currentProcess].startTime) - colleciton[currentProcess].timeStoped;
+			colleciton.timeStoped = wait;
 			
 		}
 		// updates wait if no processes can start yet
@@ -38,7 +39,7 @@ int roundRobin(Queue colleciton, int quantum, int numberOfProcesses){
 	}
 	
 	for (int i=0; i < numberOfProcesses; i++){
-		averageWaitTime = averageWaitTime + colleciton[i] -> wait_time;
+		averageWaitTime = averageWaitTime + colleciton[i].wait_time;
 	}
 	
 	averageWaitTime = averageWaitTime / numberOfProcesses;
@@ -52,7 +53,7 @@ bool checkFinished (Queue collection, int numberOfProcesses) {
 	int checkValue = 0;
 	// loops based on the number of processes in the array and updates the checkValue if the BurstTime is 0
 	for (int i = 0; i < numberOfProcesses; i++){
-		if(colleciton[i]->total_CPU_Burst == 0){
+		if(colleciton[i].total_CPU_Burst == 0){
 			++checkValue;
 		}
 		
