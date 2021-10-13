@@ -27,6 +27,6 @@ struct Queue {
 // Pre: file stream
 // Post: True if the file is open, and reads in all input from file into a struct
 //       False if the file is closed
-bool read_File (Queue q[]);
+bool read_File (Queue q[], string fileName);
 
 #endif
