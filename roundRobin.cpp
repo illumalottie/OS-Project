@@ -7,7 +7,7 @@
 int roundRobin(Queue colleciton, int quantum, int numberOfProcesses){
 	
 	// wait be the time it running
-	int wait = 0;
+	float wait = 0.0;
 	int currentProcess = 0;
 	int averageWaitTime = 0;
 	// uses the chechFinished function to see if it needs to stop
@@ -17,10 +17,10 @@ int roundRobin(Queue colleciton, int quantum, int numberOfProcesses){
 			currentProcess = 0;
 		}
 		// checks if enough time has passed for a process to go through the sort based on the startTime
-		if (wait >= collection[currentProcess] -> startTime){
+		if (wait >= collection[currentProcess].arrival_Time){
 			// runs for the length of a quantum and updates a processes burst tmie left and the total wait time
 			for(int i=0; i < quantum; i++){
-				if (cursor -> total_CPU_Burst != 0){
+				if (collection[currentProcess].total_CPU_Burst != 0.0){
 					--collection[currentProcess].total_CPU_Burst;
 					++wait;
 				}
