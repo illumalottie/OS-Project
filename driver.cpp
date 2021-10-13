@@ -27,26 +27,27 @@ int main(int argc, char **argv) {
   Queue q[100]; //maybe do the lexical definition he mentioned? thoughts? - lottie
   string com[100];
   char f;
+  int i = 0;
   
   //THIS IS ALL TESTING 
   while (--argc >= 0) { //IT WORKS 
-    //if ((*++argv)[0] == '-') {
+    if ((*++argv)[0] == '-') {
     //  while (f = *++argv[0]) {
-    // 
-    //else { //not flag argv's
-    //  *++argv[0];
-
-    com[argc] = argv[argc];
-    cout << endl << com[argc];
-    if (com[argc] == "yum") {
-      cout << endl << "it works! YUM!";
+    } 
+    else { //not flag argv's
+      com[i] = argv[0];
+      cout << endl << com[i];
+      if (com[i] == "yum") {
+        cout << endl << "it works! YUM!";
+      }
+      i++;
     }
-    i++;
   }
   //
   
-  read_File(q, "sched.in");
-
+  int processCnt = read_File(q, "sched.in");
+  cout << endl << "Number of processes: " << processCnt; //debug comment
+  
   //i can pass in an Queue array and it brings back all the info from the file
   //below the couts are just tests to make sure it returns the right numbers - lottie
 
