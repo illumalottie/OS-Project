@@ -1,4 +1,4 @@
-cpuScheduler : driver.o adt.o fcfs.o sjf.o priority.o redRobin.o
+cpuScheduler : driver.o adt.o fcfs.o sjf.o priority.o redRobin.o adt.o 
 	g++ driver.o adt.o fcfs.o sjf.o priority.o redRobin.o -o cpuScheduler 
 
 driver.o : driver.cpp fcfs.cpp fcfs.h sjf.cpp sjf.h priority.cpp priority.h redRobin.cpp redRobin.h adt.cpp adt.h
