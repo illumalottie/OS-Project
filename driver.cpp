@@ -25,7 +25,19 @@ using namespace std;
 
 int main(int argc, char **argv) {
   Queue q[100]; //maybe do the lexical definition he mentioned? thoughts? - lottie
-
+  string com[100];
+  
+  //THIS IS ALL TESTING 
+  while (--argc >= 0) { //IT WORKS 
+    com[argc] = argv[argc];
+    cout << endl << com[argc];
+    if (com[argc] == "yum") {
+      cout << endl << "it works! YUM!";
+    }
+    i++;
+  }
+  //
+  
   read_File(q);
 
   //i can pass in an Queue array and it brings back all the info from the file
