@@ -7,21 +7,21 @@
 
 using namespace std;
 
-//id arr burst priority
-void read_File (Queue q[], string fileName) {
-	int i = 0;
+int read_File (Queue q[], string fileName) {
+	int processCnt = 0;
 	ifstream getInput;
 	getInput.open(fileName); 
 	if (!getInput.is_open()) {
 		cout << "Invalid file entered: defaulting to sched.in";
 		getInput.open("sched.in");
   	}
-	while (getInput) {
-		getInput >> q[i].p_id;
-		getInput >> q[i].arrival_time;
-		getInput >> q[i].total_CPU_burst;
-		getInput >> q[i].priority; 
-		i++;
+	while (!getInput.eof()) {
+		getInput >> q[processCnt].p_id;
+		getInput >> q[processCnt].arrival_time;
+		getInput >> q[processCnt].total_CPU_burst;
+		getInput >> q[processCnt].priority; 
+		processCnt++;
 	}
 	getInput.close();
+	return processCnt;
 }
