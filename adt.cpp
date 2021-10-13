@@ -8,16 +8,15 @@
 using namespace std;
 
 //id arr burst priority
-bool read_File (Queue q[]) {
+void read_File (Queue q[], string fileName) {
 	int i = 0;
 	ifstream getInput;
-	getInput.open("input.txt"); 
-	if (!getInput) {
-		cout << "IT FAILED";
-		return false;
+	getInput.open(fileName); 
+	if (!getInput.is_open()) {
+		cout << "Invalid file entered: defaulting to sched.in";
+		getInput.open("sched.in");
   	}
-	while (getInput) { //fig how to look for unfinished lines?
-				//^^ what do you mean - lottie
+	while (getInput) {
 		getInput >> q[i].p_id;
 		getInput >> q[i].arrival_time;
 		getInput >> q[i].total_CPU_burst;
@@ -25,5 +24,4 @@ bool read_File (Queue q[]) {
 		i++;
 	}
 	getInput.close();
-	return true;
 }
