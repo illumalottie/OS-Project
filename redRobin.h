@@ -1,4 +1,4 @@
-// FILE: redRobin.h
+// FILE: roundRobin.h
 // Coder:
 // Purpose:
 //
