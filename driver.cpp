@@ -18,7 +18,7 @@
 #include "fcfs.h"
 #include "sjf.h"
 #include "priority.h"
-#include "redRobin.h"
+#include "roundRobin.h"
 #include "adt.h"
 
 using namespace std;
