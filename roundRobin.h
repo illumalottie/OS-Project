@@ -2,8 +2,8 @@
 // Coder:
 // Purpose:
 //
-#ifndef REDROBIN_H_INCLUDED
-#define REDROBIN_H_INCLUDED
+#ifndef ROUNDROBIN_H_INCLUDED
+#define ROUNDROBIN_H_INCLUDED
 
 #include "adt.h"
 
