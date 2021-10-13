@@ -45,7 +45,7 @@ int main(int argc, char **argv) {
   }
   //
   
-  read_File(q);
+  read_File(q, "sched.in");
 
   //i can pass in an Queue array and it brings back all the info from the file
   //below the couts are just tests to make sure it returns the right numbers - lottie
