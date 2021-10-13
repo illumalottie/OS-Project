@@ -16,9 +16,10 @@ using namespace std;
 
 
 struct Queue {
-  int p_id, priority;
-  float arrival_time;
-  float total_CPU_Burst;
+  string p_id
+  int priority;
+  int arrival_time;
+  int total_CPU_Burst;
 }; 
   
 
@@ -28,6 +29,6 @@ struct Queue {
 //      fileName to open file
 // Post: all input form file has been entered into a queue struct
 //       and an the number of processes has been returned
-int read_File (Queue q[], string fileName);
+int read_File (queue<Queue>& q, string fileName);
 
 #endif
