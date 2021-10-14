@@ -78,4 +78,21 @@ void printQ(deque<Queue> q)
   cout << '\n';
 }
 
+bool did_user_forget(string c) {
+  if (c == "--type" || c == "--preemptive" || c == "--quanta" || c == "--file" || c == "--verbose") {
+    return true; //yes they forgot
+  }
+  else {
+    return false;
+  }
+}
 
+bool valid_type (string c) {
+  if (c == "FCFS" || c == "SJF" || c == "Priority" || c == "RR" || c == "fcfs" || c == "sjf" || c == "rr")
+    {
+      return true; //it is valid
+    }
+  else {
+    return false;
+  }
+} 
