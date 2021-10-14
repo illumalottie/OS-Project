@@ -62,7 +62,7 @@ int main(int argc, char **argv) {
       if (did_user_forget(com[i + 1]) == false) {
 	      i++;
 	      try {quanta = stoi(com[i]);}
-        //catches the user trying to convert a not-integer-representing string
+        	//catches the user trying to convert a not-integer-representing string
 	      catch (exception &err) { //for the exception http://cplusplus.com/forum/beginner/253696/
 	        cerr << "Invalid Quanta: defaulting to 10\n";
 	      }
