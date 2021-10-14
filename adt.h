@@ -40,10 +40,23 @@ int read_File (deque<Queue>& q, string fileName);
 // Post: newProcess is in the deque<Queue> q
 void sortingHat(deque<Queue>& q, Queue newProcess);
 
-// Coder: J Yong
+// Coder: J Yong + showdq https://www.geeksforgeeks.org/deque-cpp-stl/
 // Purpose: print the queue
 // Pre: deque to print
 // Post: deque has been printed
 // Note: can be deleted
 void printQ(deque<Queue> q);
+
+// Coder: J Yong
+// Purpose: check if there's a valid parameter ahead
+// Pre: string c is the parameter ahead to check if it matches any of the flags
+// Post: returns true if the user forgot and false if they didn't
+bool did_user_forget(string c);
+
+// Coder: J Yong
+// Purpose: checks if the parameter ahead is a valid type
+// Pre: string c is the parameter ahead that could be the type if it matches any of the valid types
+// Post: true if it valid and false if it isn't 
+bool valid_type(string c);
+
 #endif
