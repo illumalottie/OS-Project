@@ -20,6 +20,7 @@ struct Queue {
   int priority;
   int arrival_time;
   int total_CPU_burst;
+  int waitTime;
 }; 
   
 
