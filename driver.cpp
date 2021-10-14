@@ -14,6 +14,7 @@
 //  SOURCES: 
 //  using struct for a queue/deque https://stackoverflow.com/questions/25074741/how-do-i-store-and-get-a-queue-of-structure
 //  Used deque because it's more flexible than queue https://www.cplusplus.com/reference/deque/deque/push_front/
+//  catch error from stoi https://www.cplusplus.com/reference/stdexcept/invalid_argument/
 
 //  Side-Quests: detect unfinished lines, empty files?
 //
