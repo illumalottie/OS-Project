@@ -15,7 +15,7 @@
 //  using struct for a queue/deque https://stackoverflow.com/questions/25074741/how-do-i-store-and-get-a-queue-of-structure
 //  Used deque because it's more flexible than queue https://www.cplusplus.com/reference/deque/deque/push_front/
 
-//  Side-Quests: detect unfinished lines
+//  Side-Quests: detect unfinished lines, empty files?
 //
 #include <iostream>
 #include "fcfs.h"
@@ -59,5 +59,6 @@ int main(int argc, char **argv) {
        << endl << temp.p_id 
        << " " << temp.arrival_time << endl;
   
+  printQ(q);
   return 0;
 }
