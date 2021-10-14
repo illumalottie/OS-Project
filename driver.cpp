@@ -11,7 +11,10 @@
 //         --verbose (not is the default) for the extra info 
 //
 //  OUTPUT: average wait time for each process
-//
+//  SOURCES: 
+//  using struct for a queue/deque https://stackoverflow.com/questions/25074741/how-do-i-store-and-get-a-queue-of-structure
+//  Used deque because it's more flexible than queue https://www.cplusplus.com/reference/deque/deque/push_front/
+
 //  Side-Quests: detect unfinished lines
 //
 #include <iostream>
@@ -24,7 +27,7 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-  queue<Queue> q; //maybe do the lexical definition he mentioned? thoughts? - lottie
+  deque<Queue> q; //maybe do the lexical definition he mentioned? thoughts? - lottie
   string com[100];
   char f;
   int i = 0;
