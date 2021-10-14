@@ -40,7 +40,7 @@ int read_File (deque<Queue>& q, string fileName) {
 	return processCnt;
 }
 
-//this is why I used deque
+//this is why deque was used
 void sortingHat(deque<Queue>& q, Queue newProcess) {
   deque<Queue> more_than_new;
   if (newProcess.arrival_time <= q.front().arrival_time) {
