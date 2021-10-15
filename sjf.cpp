@@ -1,9 +1,9 @@
 // FILE: sjf.cpp
 // Coder: Dan Aossey & Lottie
-// Purpose: First come first serve
+// Purpose: First come first serve function
 #include "sjh.h"
 // sjf_avg_wait fn - returns an int value representing the average wait time of an inputed process, can operate with preemption on or off
-int sjf_avg_wait(deque<Queue> q, int numberOfProcessses, bool preempt){
+int sjf_avg_wait(deque<Queue> q, int numberOfProcessses, bool preempt, bool verbose){
   int runningTime = 0;
   int shortTime = 0;
   int avgWait = 0;
@@ -48,6 +48,13 @@ int sjf_avg_wait(deque<Queue> q, int numberOfProcessses, bool preempt){
   for (int i = 0; i < terminated.size(); i++){
     avgWait = avgWait + terminated[i].waitTime;
   }
+
+if(verbose){
+	for (int i = 0; i < terminated.size(); i++){
+	cout << endl << "Process: " << terminated[i].p_id << " (wait " << terminated[i].waitTime << ")";
+	}
+}
+
   avgWait = avgWait/terminated.size();    
   return avgWait;
 }
