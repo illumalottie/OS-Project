@@ -16,9 +16,9 @@
 //  using struct for a queue/deque https://stackoverflow.com/questions/25074741/how-do-i-store-and-get-a-queue-of-structure
 //  Used deque because it's more flexible than queue https://www.cplusplus.com/reference/deque/deque/push_front/
 //  catch error from stoi https://www.cplusplus.com/reference/stdexcept/invalid_argument/
-
-//  Side-Quests: detect unfinished lines, empty files?
 //
+//  Side-Quests: detect unfinished lines
+
 #include <iostream>
 #include "fcfs.h"
 #include "sjf.h"
@@ -36,10 +36,10 @@ int main(int argc, char **argv) {
   bool preemptive = false;
   bool verbose = false;
   
-// For flags: 
-	//Lottie wrote the frame
-	//Joey filled in the frame 
-  while (--argc > 0) {
+  // For flags: 
+  //	Lottie wrote the frame
+  //	Joey filled in the frame 
+  while (--argc > 0) { //stores flags into a string array
     com[flagCnt] = argv[1];
     cout << com[flagCnt] << endl;
     ++argv;
@@ -50,16 +50,12 @@ int main(int argc, char **argv) {
   for (int i = 0; i < flagCnt; i++) {
     if(com[i] == "--type"){
       if (did_user_forget(com[i + 1]) == false) {
-	      if (valid_type(com[i + 1]) == true) {
-	        i++;
-	        type = com[i];
-	      }
+	      i++; 
+	      type = com[i];
       }
-      cout << "TYPE " << type << endl;
     }
     else if(com[i] == "--preemptive") {
       preemptive = true;
-      cout << "PRE " << preemptive << endl;
     }
     else if(com[i] == "--quanta") {
       if (did_user_forget(com[i + 1]) == false) {
@@ -70,33 +66,27 @@ int main(int argc, char **argv) {
 	        cerr << "Invalid Quanta: defaulting to 10\n";
 	      }
       }
-      cout << "QUANTA " << quanta << endl;
     }
     else if(com[i] == "--file"){
       if (did_user_forget(com[i + 1]) == false) {
 	      i++;
 	      fileName = com[i];
       }
-      cout << "FILE " << fileName << endl;
     }
     else if(com[i] == "--verbose"){
       verbose = true;
-      cout << "VER " << verbose << endl;
     }
     else {
-      cout << com[i] << " is INVALID" << endl;
+	    i++; //ignore a non-flag
     }
   }
   
-  int processCnt = read_File(q, fileName);
-  cout << endl << "Number of processes: " <<  processCnt << endl;
-
-  int fcfs = fcfs_avg_wait(q, processCnt);
-  cout << endl << "Average Wait Time: " << fcfs << endl;
-  
-  cout << endl << "\nDEBUG" << endl;
-  
-  printQ(q);
+  if (verbose == true) {
+    for_Verbose(fileName, type, preemptive, quanta, q, avg_wait, processCnt); 
+  }
+  else {
+    cout << endl << "Average Wait Time: " << avg_wait << endl;
+  }
+	
   return 0;
-
 }
