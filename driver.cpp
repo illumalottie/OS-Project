@@ -36,6 +36,9 @@ int main(int argc, char **argv) {
   bool preemptive = false;
   bool verbose = false;
   
+// For flags: 
+	//Lottie wrote the frame
+	//Joey filled in the frame 
   while (--argc > 0) {
     com[flagCnt] = argv[1];
     cout << com[flagCnt] << endl;
