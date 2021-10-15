@@ -59,10 +59,4 @@ void printQ(deque<Queue> q);
 // Post: returns true if the user forgot and false if they didn't
 bool did_user_forget(string c);
 
-// Coder: J Yong
-// Purpose: checks if the parameter ahead is a valid type
-// Pre: string c is the parameter ahead that could be the type if it matches any of the valid types
-// Post: true if it valid and false if it isn't 
-bool valid_type(string c);
-
 #endif
