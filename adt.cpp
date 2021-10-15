@@ -8,7 +8,7 @@ void read_File (deque<Queue>& q, string fileName) {
 	getInput.open(fileName);
 	
 	if (!getInput.is_open()) {
-	  cout << endl << "Invalid File entered: Going to default...";
+	  cout << endl << "Invalid File entered: Opening default file...";
 	  getInput.open("sched.in");
   	}
 
