@@ -55,8 +55,8 @@ int priority_avg_wait(deque<Queue> q, int numberOfProcessses, bool preempt, bool
     for (int i = 0; i < terminated.size(); i++){
       cout << endl << "Process: " << terminated[i].p_id << " (wait " << terminated[i].waitTime << ")";
     }
-    return avgWait;
   }
+  return avgWait;
 }
 // prepReadyQueue fn - returns a deque of all the proccesses not added to the ready queue while updating the ready queue via refrence
 deque<Queue>  prepReadyQueue(deque <Queue> processes, deque <Queue>& readyQueue, int runningTime){
