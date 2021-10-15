@@ -2,9 +2,7 @@
 // Coder: J Yong + Lottie Maynard
 // Purpose: this can be deleted 
 #include "adt.h"
-
-int read_File (deque<Queue>& q, string fileName) {
-	int processCnt = 1; 
+void read_File (deque<Queue>& q, string fileName) { 
 	Queue newProcess;
 	ifstream getInput;
 	getInput.open(fileName);
@@ -24,20 +22,17 @@ int read_File (deque<Queue>& q, string fileName) {
 	//reads in p_id first so that it can start on the next line after pushing
 	//a new process
 	getInput >> newProcess.p_id; 
-	do { 
+        while (!getInput.eof()) {
 		getInput >> newProcess.arrival_time;
 		getInput >> newProcess.total_CPU_burst;
 		getInput >> newProcess.priority;
-		cout << endl << " Pre " << q.front().arrival_time << " Post " << newProcess.arrival_time << endl;
 	
 		sortingHat(q, newProcess);
 		
-		processCnt++;
 		getInput >> newProcess.p_id; //checks if there is a next line
-	} while (!getInput.eof());
+	} 
 	
 	getInput.close();
-	return processCnt;
 }
 
 //this is why deque was used
@@ -63,6 +58,16 @@ void sortingHat(deque<Queue>& q, Queue newProcess) {
       more_than_new.pop_front();
     }
   }
+}
+
+void for_Verbose(string fileName, string type, bool preemptive, int quanta, deque<Queue> q, int avg_wait) {
+  cout << endl << "File Name: " << fileName
+       << endl << "Scheduling Type: " << type
+       << endl << "Quanta: " << quanta
+       << endl << "Pre-emption(0 is false & 1 is true): " << preemptive
+       << endl << "Number of processes: " <<  q.size()
+       << endl << "Average Wait Time: " << avg_wait;
+  printQ(q);
 }
 
 //Debugging 
