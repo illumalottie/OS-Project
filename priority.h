@@ -1,6 +1,6 @@
 // FILE: priority.h
-// Coder:
-// Purpose:
+// Coder: Lottie and Dan
+// Purpose: priority header file
 //
 #ifndef PRIORITY_H_INCLUDED
 #define PRIORITY_H_INCLUDED
