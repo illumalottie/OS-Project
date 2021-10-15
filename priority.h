@@ -9,7 +9,7 @@
 
 int priority_avg_wait(deque<Queue> q, int numberOfProcessses, bool preempt, bool verbose);
 deque<Queue> prepReadyQueue(deque <Queue> processes, deque <Queue>& readyQueue, int runningTime);
-dequeue<Queue> lowestPriority (dequeue<Queue> readyQueue;
+deque<Queue> lowestPriority (deque<Queue> readyQueue);
 
 
 #endif 
