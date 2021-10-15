@@ -81,6 +81,19 @@ int main(int argc, char **argv) {
     }
   }
   
+  if (type == "SJF" || type == "sjf") {
+
+  }
+  else if (type == "RR" || type == "rr") {
+
+  }
+  else if (type == "Priority" || type == "priority") {
+
+  }
+  else { //defaults to fcfs
+  	avg_wait = fcfs_avg_wait(q, processCnt);
+  }
+  	
   if (verbose == true) {
     for_Verbose(fileName, type, preemptive, quanta, q, avg_wait, processCnt); 
   }
