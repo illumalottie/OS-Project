@@ -10,8 +10,7 @@
 // Coder: J Yong
 // Purpose: finds the avg wait time for fcfs
 // Pre: q is where the total wait time is being pulled from
-//      processCnt is what the total is being divided by
 // Post: fcfs average wait time
-int fcfs_avg_wait(deque<Queue> q, int processCnt);
+int fcfs_avg_wait(deque<Queue> q);
 
 #endif
