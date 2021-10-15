@@ -7,4 +7,8 @@
 
 #include "adt.h"
 
+deque<Queue> prepReadyQueue(deque <Queue> processes, deque <Queue>& readyQueue, int runningTime);
+dequeue<Queue> lowestPriority (dequeue<Queue> readyQueue;
+
+
 #endif 
