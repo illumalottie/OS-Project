@@ -1,6 +1,6 @@
 // FILE: sjf.h
-// Coder:
-// Purpose:
+// Coder: Dan and Lottie
+// Purpose: header file for sjf process
 //
 #ifndef SJF_H_INCLUDED
 #define SJF_H_INCLUDED
