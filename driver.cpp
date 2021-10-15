@@ -91,7 +91,7 @@ int main(int argc, char **argv) {
 
   }
   else { //defaults to fcfs
-  	avg_wait = fcfs_avg_wait(q, processCnt);
+  	avg_wait = fcfs_avg_wait(q);
   }
   	
   if (verbose == true) {
