@@ -27,7 +27,7 @@ void read_File (deque<Queue>& q, string fileName) {
 		getInput >> newProcess.total_CPU_burst;
 		getInput >> newProcess.priority;
 	
-		sortingHat(q, newProcess);
+		sortingHat(q, newProcess); //for fcfs
 		
 		getInput >> newProcess.p_id; //checks if there is a next line
 	} 
@@ -70,20 +70,23 @@ void for_Verbose(string fileName, string type, bool preemptive, int quanta, dequ
   printQ(q);
 }
 
-//Debugging 
 void printQ(deque<Queue> q)
 {
   Queue temp;
   deque<Queue> t = q;
   while (!t.empty()) {
     temp = t.front();
-    cout << endl << temp.p_id << " " << temp.arrival_time << " " << temp.total_CPU_burst << " " << temp.priority;
+    cout << endl << "P_id: " << temp.p_id
+	 << " Arrival Time: " << temp.arrival_time
+	 << " Total CPU Burst: " << temp.total_CPU_burst
+	 << " Priority: " << temp.priority
+	 << " Wait Time: " << temp.waitTime << endl;
     t.pop_front();
   }
-  cout << '\n';
+  cout << endl;
 }
 
-bool did_user_forget(string c) {
+bool did_user_forget(string c) { 
   if (c == "--type" || c == "--preemptive" || c == "--quanta" || c == "--file" || c == "--verbose") {
     return true; //yes they forgot
   }
@@ -91,13 +94,3 @@ bool did_user_forget(string c) {
     return false;
   }
 }
-
-bool valid_type (string c) {
-  if (c == "FCFS" || c == "SJF" || c == "Priority" || c == "RR" || c == "fcfs" || c == "sjf" || c == "rr")
-    {
-      return true; //it is valid
-    }
-  else {
-    return false;
-  }
-} 
