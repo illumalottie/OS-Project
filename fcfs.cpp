@@ -10,7 +10,7 @@ int fcfs_avg_wait (deque<Queue>& q, int processCnt) {
   
   for (int i = 1; i < processCnt; i++) {
     time = time + q[i-1].total_CPU_burst;
-    q[i].waitTime  = time + q[i].waitTime; //changes Wait Time in the deque 
+    q[i].waitTime  = time; //changes Wait Time in the deque 
     totalWait = totalWait + q[i].waitTime;
   }
   
