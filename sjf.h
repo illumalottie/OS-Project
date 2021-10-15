@@ -1,6 +1,6 @@
 // FILE: sjf.h
-// Coder: Dan and Lottie
-// Purpose: header file for sjf process
+// Coder:
+// Purpose:
 //
 #ifndef SJF_H_INCLUDED
 #define SJF_H_INCLUDED
@@ -8,7 +8,9 @@
 #include "adt.h"
 
 int sjf_avg_wait(deque <Queue> q, int numberOfProcesses, bool preempt, bool verbose);
-deque<Queue> readyQueueMaker(deque <Queue>& processes, deque <Queue>& readyQueue, int runningTime);
+int sjf_avg_wait_noPre(deque <Queue> q, int numberOfProcesses, bool verbose);
+int sjf_avg_wait_pre(deque <Queue> q, int numberOfProcesses, bool verbose);
+deque<Queue> readyQueueMaker(deque <Queue> processes, deque <Queue>& readyQueue, int runningTime);
 deque<Queue> shortestTime(deque<Queue> readyQueue);
 
 #endif 
