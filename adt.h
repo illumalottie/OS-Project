@@ -31,7 +31,7 @@ struct Queue {
 //      fileName to open file
 // Post: all input form file has been entered into a queue struct
 //       and an the number of processes has been returned
-int read_File (deque<Queue>& q, string fileName);
+void read_File (deque<Queue>& q, string fileName);
 
 // Coder: J Yong
 // Purpose: eval and inputs new Queues according to their arrival time
@@ -39,6 +39,12 @@ int read_File (deque<Queue>& q, string fileName);
 //      newProcess - a Queue struct that has not been pushed into the q
 // Post: newProcess is in the deque<Queue> q
 void sortingHat(deque<Queue>& q, Queue newProcess);
+
+// Coder: J Yong 
+// Purpose: prints the verbose
+// Pre: all the things its going to print
+// Post: stuff printed
+void for_Verbose(string fileName, string type, bool preemptive, int quanta, deque<Queue> q, int avg_wait);
 
 // Coder: J Yong + showdq https://www.geeksforgeeks.org/deque-cpp-stl/
 // Purpose: print the queue
