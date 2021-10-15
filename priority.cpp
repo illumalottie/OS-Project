@@ -3,7 +3,7 @@
 // Purpose: First come first serve
 #include "priority.h"
  
-int priority_avg_wait(deque<Queue> q, int numberOfProcessses, bool preempt){
+int priority_avg_wait(deque<Queue> q, int numberOfProcessses, bool preempt, bool verbose){
   int runningTime = 0;
   int shortTime = 0;
   int avgWait = 0;
@@ -44,6 +44,10 @@ int priority_avg_wait(deque<Queue> q, int numberOfProcessses, bool preempt){
     avgWait = avgWait + terminated[i].waitTime;
   }
   avgWait = avgWait/terminated.size();
+	if(verbose){
+	for (int i = 0; i < terminated.size(); i++){
+	cout << endl << "Process: " << terminated[i].p_id << " (wait " << terminated[i].waitTime << ")";
+	}
   return avgWait;
 }
 
