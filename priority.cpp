@@ -4,6 +4,13 @@
 #include "priority.h"
 // priority_avg_wait fn - returns an int value representing the average wait time of an inputed process using priority, can operate with preemption on or off
 int priority_avg_wait(deque<Queue> q, int numberOfProcessses, bool preempt, bool verbose){
+	  if (preempt){
+    return priority_avg_wait_pre(q, numberOfProcesses, verbose);
+  }
+  return priority_avg_wait_noPre(q, numberOfProcesses, verbose);
+}
+
+int priority_avg_wait_noPre(deque<Queue> q, int numberOfProcessses, bool verbose){
   int runningTime = 0;
   int shortTime = 0;
   int avgWait = 0;
@@ -58,6 +65,63 @@ int priority_avg_wait(deque<Queue> q, int numberOfProcessses, bool preempt, bool
   }
   return avgWait;
 }
+
+int priority_avg_wait_pre(deque<Queue> q, int numberOfProcessses, bool verbose){
+  int runningTime = 0;
+  int shortTime = 0;
+  int avgWait = 0;
+  int initalSize = q.size();
+  int queueSize = q.size();
+  deque<Queue> processes = q;
+  deque<Queue> readyQueue;
+  deque<Queue> terminated;
+  Queue running;
+  processes = prepReadyQueue(processes, readyQueue, runningTime);
+  // while loop keeps repeating untill every process has been terminated by checking thew size of thr terminated queue
+  while(terminated.size() < initalSize){
+    // checks if there is anything in thr readyQueue, if empty the total running time incremints and the ready queue is updated before the while loop starts over
+    // if the condition is successful the ready queue will be updated by pushing the element we need to the front 
+    if(readyQueue.size() > 0){
+      readyQueue = lowestPriority(readyQueue);
+      running = readyQueue.front();
+      readyQueue.pop_front();
+      --running.total_CPU_burst;
+      ++runningTime;
+      // incremints the waitTime stored in each element of the ready queue for the avg wait time
+      for(int p = 0; p < readyQueue.size(); p++){
+	++readyQueue[p].waitTime;
+      }
+      /*
+	cout << "here is the pid and then the wait time for rdq 1: " << readyQueue[0].p_id << " ";
+	cout <<  readyQueue[0].waitTime << endl;
+	cout << "here is the pid and then the wait time for rdq 2: " << readyQueue[1].p_id << " ";
+	cout <<  readyQueue[1].waitTime << endl;
+      */
+      // checks if the current process is finished and goes into the terminated queue or intead goes back into the ready queue
+      if (running.total_CPU_burst == 0){
+	terminated.push_front(running);
+      }
+      else if (running.total_CPU_burst !=0){
+	readyQueue.push_back(running);
+      }
+    }
+    else{
+      ++runningTime;
+    } 
+    processes = prepReadyQueue(processes, readyQueue, runningTime);
+  }
+  // uses a for loop based on the size of prepReadyQueue to add up all the waitTime values of the processes
+  for (int i = 0; i < terminated.size(); i++){
+    avgWait = avgWait + terminated[i].waitTime;
+    cout << "HERE IS THE WAIT" << avgWait << endl;
+    if(verbose){
+      cout << endl << terminated[i].p_id << " was terminated and had a wait time of " << terminated[i].waitTime;
+    }
+  }
+  avgWait = avgWait/terminated.size();
+  return avgWait;
+}
+
 // prepReadyQueue fn - returns a deque of all the proccesses not added to the ready queue while updating the ready queue via refrence
 deque<Queue>  prepReadyQueue(deque <Queue> processes, deque <Queue>& readyQueue, int runningTime){
   deque<Queue> ah;
@@ -93,3 +157,4 @@ deque<Queue> lowestPriority(deque<Queue> readyQueue){
   }
   return newReadyQueue; 
 }
+
