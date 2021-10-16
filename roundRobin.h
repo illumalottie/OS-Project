@@ -1,22 +1,13 @@
-// FILE: redRobin.h
-// Coder:
-// Purpose:
+// FILE: roundRobin.h
+// Coder: Lottie
+// Purpose: Initialize functions for RR
 //
 #ifndef REDROBIN_H_INCLUDED
 #define REDROBIN_H_INCLUDED
 
 #include "adt.h"
-#include <iostream>
-#include <stdio.h>
-#include <string.h>
-#include <fstream>
-#include <queue>
-#include <stack>
-#include <vector>
-using namespace std;
 
-
-int roundRobin(Queue colleciton, int quantum, int numberOfProcesses);
-bool checkFinished (Queue collection, int numberOfProcesses);
+int rr_avg_wait(deque <Queue> q, bool verbose, int quanta);
+deque<Queue> readyQueueMakerRR(deque <Queue> processes, deque <Queue>& readyQueue, int runningTime);
 
 #endif 
