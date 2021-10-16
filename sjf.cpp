@@ -3,13 +3,14 @@
 // Purpose: Runs a queue through priority
 #include "sjf.h"
 
-int sjf_avg_wait(deque<Queue> q, int numberOfProcesses, bool preempt, bool verbose){
+int sjf_avg_wait(deque<Queue> q, bool preempt, bool verbose){
   if (preempt){
-    return sjf_avg_wait_pre(q, numberOfProcesses, verbose);
+    return sjf_avg_wait_pre(q, q.size(), verbose);
   }
-  return sjf_avg_wait_noPre(q, numberOfProcesses, verbose);
+  return sjf_avg_wait_noPre(q, q.size(), verbose);
 }
-int sjf_avg_wait_noPre(deque<Queue> q, int numberOfProcessses, bool verbose){
+
+int sjf_avg_wait_noPre(deque<Queue> q, bool verbose){
   int runningTime = 0;
   int shortTime = 0;
   int avgWait = 0;
@@ -19,32 +20,34 @@ int sjf_avg_wait_noPre(deque<Queue> q, int numberOfProcessses, bool verbose){
   deque<Queue> readyQueue;
   deque<Queue> terminated;
   Queue running;
-  // while runs as long as the terminated que is smaller than the size of the inputed queue
+	
   while(terminated.size() < initalSize){
-    // processes is our "new" queue, readyQueueMaker returns a dequeu with all the elemets of the original que not inserted into the ready queue during the fn
+    // processes is our "new" queue
+    // readyQueueMaker returns a dequeu with all the elemets of the original que not inserted into the ready queue during the fn
     processes = readyQueueMaker(processes, readyQueue, runningTime);
+	  
     if (readyQueue.size() > 0){
       readyQueue = shortestTime(readyQueue);
       running = readyQueue.front();
     }
-    // checks if there are elemets in the ready que and if not skips everything and just incrimints the time
-    cout << running.total_CPU_burst << endl;
+	 
     if(readyQueue.size() > 0){  
       readyQueue.pop_front();
-      // while loop runs based on a processes burst time while updating runtime
+      // while loop runs based on a process's burst time while updating runtime
       while(running.total_CPU_burst > 0){
 	--running.total_CPU_burst;
 	++runningTime;
 	processes = readyQueueMaker(processes, readyQueue, runningTime);
+	      
 	// update the wait value of every process in the ready que for each cycle
 	for(int p = 0; p < readyQueue.size(); p++){
 	  ++readyQueue[p].waitTime;
 	}
       }
-      // checks if a process has finished running and adds it to the terminated que
+	    
       if (running.total_CPU_burst == 0){
-	terminated.push_front(running);
-      }
+	terminated.push_front(running); //process is finished
+      )
       processes = readyQueueMaker(processes, readyQueue, runningTime);
     }
     else {
@@ -91,12 +94,6 @@ int sjf_avg_wait_pre(deque<Queue> q, int numberOfProcessses, bool verbose){
       for(int p = 0; p < readyQueue.size(); p++){
 	++readyQueue[p].waitTime;
       }
-      /*
-	cout << "here is the pid and then the wait time for rdq 1: " << readyQueue[0].p_id << " ";
-	cout <<  readyQueue[0].waitTime << endl;
-	cout << "here is the pid and then the wait time for rdq 2: " << readyQueue[1].p_id << " ";
-	cout <<  readyQueue[1].waitTime << endl;
-      */
       // checks if the current process is finished and goes into the terminated queue or intead goes back into the ready queue
       if (running.total_CPU_burst == 0){
 	terminated.push_front(running);
