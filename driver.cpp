@@ -82,7 +82,7 @@ int main(int argc, char **argv) {
   }
   
   if (type == "SJF" || type == "sjf") {
-
+	avg_wait = sjf_avg_wait(q, preemptive, verbose);
   }
   else if (type == "RR" || type == "rr") {
 
