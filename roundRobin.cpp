@@ -1,67 +1,86 @@
-// FILE: redRobin.cpp
-// Coder:
-// Purpose: 
-#include "redRobin.h"
-
-// roundRobin - runs the roundRobin schedule
-int roundRobin(Queue colleciton, int quantum, int numberOfProcesses){
-	
-	// wait be the time it running
-	float wait = 0.0;
-	int currentProcess = 0;
-	int averageWaitTime = 0;
-	// uses the chechFinished function to see if it needs to stop
-	while (checkFinished(collection, numberOfProcesses){
-		// checks if the roundrobin has made it to the end of the list
-		if (currentProcess == numberOfProcesses+1){
-			currentProcess = 0;
-		}
-		// checks if enough time has passed for a process to go through the sort based on the startTime
-		if (wait >= collection[currentProcess].arrival_Time){
-			// runs for the length of a quantum and updates a processes burst tmie left and the total wait time
-			for(int i=0; i < quantum; i++){
-				if (collection[currentProcess].total_CPU_Burst != 0.0){
-					--collection[currentProcess].total_CPU_Burst;
-					++wait;
-				}
-			}
-			//calculates wait time for the process after its quatum 
-			colleciton[currentProcess].wait_Time = colleciton[currentProcess].wait_Time + (wait - colleciton[currentProcess].startTime) - colleciton[currentProcess].timeStoped;
-			colleciton.timeStoped = wait;
-			
-		}
-		// updates wait if no processes can start yet
-		else{
-			++wait;
-		}
-		
-		++currentProcess;
-	}
-	
-	for (int i=0; i < numberOfProcesses; i++){
-		averageWaitTime = averageWaitTime + colleciton[i].wait_time;
-	}
-	
-	averageWaitTime = averageWaitTime / numberOfProcesses;
-	
-	return averageWaitTime;
+// FILE: roundRobin.cpp
+// Coder: Lottie (using other work from Dan & Lottie)
+// Purpose: send processes through RR
+#include "roundRobin.h"
+//comments by Lottie
+//purpose: roundRobin avg wait time
+int rr_avg_wait(deque<Queue> q, bool verbose, int quanta){
+  int runningTime = 0;
+  int shortTime = 0;
+  int avgWait = 0;
+  int initalSize = q.size();
+  int queueSize = q.size();
+  deque<Queue> processes = q;
+  deque<Queue> readyQueue;
+  deque<Queue> terminated;
+  Queue running;
+  //get all initial queues
+  processes = readyQueueMakerRR(processes, readyQueue, runningTime);
+  //while loop to catch up to the first arrival time
+  while(readyQueue.size() == 0){
+    ++runningTime;
+    processes = readyQueueMakerRR(processes, readyQueue, runningTime);
+  }
+  running = readyQueue.front();
+  readyQueue.pop_front();
+  running.quantaCount = 0;
+  // while loop keeps repeating until every process has been terminated by checking thew size of the terminated queue
+  while(terminated.size() < initalSize){
+    --running.total_CPU_burst;
+    ++runningTime;
+    ++running.quantaCount;
+    // increases the waitTime stored in each element of the ready queue for the avg wait time
+    for(int p = 0; p < readyQueue.size(); p++){
+      ++readyQueue[p].waitTime;
+    }
+  
+    // checks if the current process is finished and whether or not to make a new ready queue
+    if (running.total_CPU_burst == 0){ 
+      terminated.push_front(running);
+      //if not completely done, make another set of queues for the next go around
+      if (terminated.size() !=  initalSize){
+	processes = readyQueueMakerRR(processes, readyQueue, runningTime);
+	running = readyQueue.front();
+	readyQueue.pop_front();
+	running.quantaCount = 0;
+      }
+    }
+    // if the quantaCount matches the quanta, then the unfinished process is sent back to the ready queue to be finished later
+    else if (running.quantaCount == quanta){
+      running.quantaCount = 0;
+      readyQueue.push_back(running);
+      processes = readyQueueMakerRR(processes, readyQueue, runningTime);
+      //a new running and ready is made for the next loop
+      running = readyQueue.front();
+      readyQueue.pop_front();
+      running.quantaCount = 0;
+    }
+    //makes a new set of queues in case something new enters the ready queue and needs its waitTime incremented
+    processes = readyQueueMakerRR(processes, readyQueue, runningTime);
+    
+  }
+  //adds all collected waitTimes and takes the average to get the avgWait
+  for (int i = 0; i < terminated.size(); i++){
+    avgWait = avgWait + terminated[i].waitTime;
+    if(verbose){
+      cout << endl << terminated[i].p_id << " was terminated and had a wait time of " << terminated[i].waitTime;
+    }
+  }
+  avgWait = avgWait/terminated.size();
+  return avgWait;
 }
-
-// checkFinished - is used by the while loop to see if every process is finished
-bool checkFinished (Queue collection, int numberOfProcesses) {
-	
-	int checkValue = 0;
-	// loops based on the number of processes in the array and updates the checkValue if the BurstTime is 0
-	for (int i = 0; i < numberOfProcesses; i++){
-		if(colleciton[i].total_CPU_Burst == 0){
-			++checkValue;
-		}
-		
-	}
-	
-	if (checkValue == numberOfProcesses){
-		return false;
-	}
-	
-	return true;
-} 
+//pre: gets the queue that was initially gathered from the file (processes), the readyQueue, and the runningTime
+//post/purpose: updates readyQueue, returns leftover processes (temp) 
+deque<Queue>  readyQueueMakerRR(deque <Queue> processes, deque <Queue>& readyQueue, int runningTime){
+  deque<Queue> temp;
+  // checks if a process should be added from the "new" queue to the ready queue
+  for(int i = 0; i < processes.size(); i++){
+    if(processes[i].arrival_time == runningTime){
+      readyQueue.push_back(processes[i]);
+    }
+    else {
+      temp.push_front(processes[i]);
+    }
+  }
+  return temp;
+}
