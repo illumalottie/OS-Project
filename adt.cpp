@@ -2,6 +2,8 @@
 // Coder: J Yong + Lottie Maynard
 // Purpose: this can be deleted 
 #include "adt.h"
+
+// unfinished lines in the input file will break program
 void read_File (deque<Queue>& q, string fileName) { 
 	Queue newProcess;
 	ifstream getInput;
